@@ -36,6 +36,15 @@ npm install
 npm run dev             # http://localhost:5173
 ```
 
+## Usuario de prueba
+
+```
+Email:    admin@test.com
+Password: 123456
+```
+
+Si no existe en tu base de datos local, créalo desde `/registro` en el frontend (crea empresa + usuario admin en un solo paso).
+
 ## Modulos implementados
 
 Autenticacion (JWT + roles) · Empresas/Multiempresa · Inventario (productos, categorias, lotes, alertas) · Ventas/POS (IVA, factura, descuento de stock) · Clientes · RRHH (empleados, contratos, nomina) · Turnos · Domicilios · Auditoria · Logs tecnicos · Informes (dashboard, ganancias, export CSV) · Modo offline (cola en IndexedDB con sincronizacion automatica).
