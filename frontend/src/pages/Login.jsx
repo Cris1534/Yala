@@ -26,15 +26,39 @@ export default function Login() {
 
   return (
     <div className="auth-page">
+      <div className="auth-grid" aria-hidden="true" />
+      <div className="auth-orb auth-orb--a" aria-hidden="true" />
+      <div className="auth-orb auth-orb--b" aria-hidden="true" />
+
       <form className="auth-card" onSubmit={handleSubmit}>
-        <h1>YALA ERP</h1>
-        <p className="subtitle">Inicia sesion</p>
+        <div className="auth-brand">
+          <span className="auth-logo" aria-hidden="true">Y</span>
+          <h1>YALA ERP</h1>
+        </div>
+        <p className="subtitle">Inicia sesion en tu panel de control</p>
 
-        <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <label htmlFor="login-email">Email</label>
+        <input
+          id="login-email"
+          type="email"
+          placeholder="tu@empresa.com"
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        <label>Contrasena</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} />
+        <label htmlFor="login-password">Contrasena</label>
+        <input
+          id="login-password"
+          type="password"
+          placeholder="••••••"
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          minLength={6}
+        />
 
         {error && <div className="error">{error}</div>}
 

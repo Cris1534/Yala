@@ -43,8 +43,15 @@ export default function Registro() {
 
   return (
     <div className="auth-page">
+      <div className="auth-grid" aria-hidden="true" />
+      <div className="auth-orb auth-orb--a" aria-hidden="true" />
+      <div className="auth-orb auth-orb--b" aria-hidden="true" />
+
       <form className="auth-card" onSubmit={handleSubmit}>
-        <h1>YALA ERP</h1>
+        <div className="auth-brand">
+          <span className="auth-logo" aria-hidden="true">Y</span>
+          <h1>YALA ERP</h1>
+        </div>
         <p className="subtitle">Registra tu negocio</p>
 
         <label>Nombre del negocio</label>
