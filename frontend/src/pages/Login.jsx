@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import AuthLayout from '../components/AuthLayout';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -18,24 +19,17 @@ export default function Login() {
       await login(email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Credenciales invalidas');
+      setError(err.response?.data?.message || 'Credenciales inválidas');
     } finally {
       setCargando(false);
     }
   }
 
   return (
-    <div className="auth-page">
-      <div className="auth-grid" aria-hidden="true" />
-      <div className="auth-orb auth-orb--a" aria-hidden="true" />
-      <div className="auth-orb auth-orb--b" aria-hidden="true" />
-
+    <AuthLayout>
       <form className="auth-card" onSubmit={handleSubmit}>
-        <div className="auth-brand">
-          <span className="auth-logo" aria-hidden="true">Y</span>
-          <h1>YALA ERP</h1>
-        </div>
-        <p className="subtitle">Inicia sesion en tu panel de control</p>
+        <h1>Bienvenido</h1>
+        <p className="subtitle">Inicia sesión en tu panel de control</p>
 
         <label htmlFor="login-email">Email</label>
         <input
@@ -48,7 +42,7 @@ export default function Login() {
           required
         />
 
-        <label htmlFor="login-password">Contrasena</label>
+        <label htmlFor="login-password">Contraseña</label>
         <input
           id="login-password"
           type="password"
@@ -63,13 +57,13 @@ export default function Login() {
         {error && <div className="error">{error}</div>}
 
         <button type="submit" disabled={cargando}>
-          {cargando ? 'Ingresando...' : 'Ingresar'}
+          {cargando ? 'Ingresando…' : 'Ingresar'}
         </button>
 
         <p className="link">
-          No tienes cuenta? <Link to="/registro">Registrar empresa</Link>
+          ¿No tienes cuenta? <Link to="/registro">Registrar empresa</Link>
         </p>
       </form>
-    </div>
+    </AuthLayout>
   );
 }

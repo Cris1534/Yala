@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api/client';
 import { useAuth } from '../context/AuthContext';
+import AuthLayout from '../components/AuthLayout';
 
 export default function Registro() {
   const [nombreEmpresa, setNombreEmpresa] = useState('');
@@ -42,48 +43,50 @@ export default function Registro() {
   }
 
   return (
-    <div className="auth-page">
-      <div className="auth-grid" aria-hidden="true" />
-      <div className="auth-orb auth-orb--a" aria-hidden="true" />
-      <div className="auth-orb auth-orb--b" aria-hidden="true" />
-
+    <AuthLayout>
       <form className="auth-card" onSubmit={handleSubmit}>
-        <div className="auth-brand">
-          <span className="auth-logo" aria-hidden="true">Y</span>
-          <h1>YALA ERP</h1>
-        </div>
-        <p className="subtitle">Registra tu negocio</p>
+        <h1>Crea tu cuenta</h1>
+        <p className="subtitle">Registra tu negocio en menos de un minuto</p>
 
-        <label>Nombre del negocio</label>
-        <input value={nombreEmpresa} onChange={(e) => setNombreEmpresa(e.target.value)} required />
+        <label htmlFor="reg-empresa">Nombre del negocio</label>
+        <input id="reg-empresa" value={nombreEmpresa} onChange={(e) => setNombreEmpresa(e.target.value)} required />
 
-        <label>Tipo de negocio</label>
-        <select value={tipoNegocio} onChange={(e) => setTipoNegocio(e.target.value)}>
+        <label htmlFor="reg-tipo">Tipo de negocio</label>
+        <select id="reg-tipo" value={tipoNegocio} onChange={(e) => setTipoNegocio(e.target.value)}>
           <option value="tienda">Tienda</option>
-          <option value="barberia">Barberia</option>
+          <option value="barberia">Barbería</option>
           <option value="restaurante">Restaurante</option>
           <option value="servicio">Servicio</option>
         </select>
 
-        <label>Tu nombre</label>
-        <input value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+        <label htmlFor="reg-nombre">Tu nombre</label>
+        <input id="reg-nombre" autoComplete="name" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
 
-        <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <label htmlFor="reg-email">Email</label>
+        <input id="reg-email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-        <label>Contrasena</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} />
+        <label htmlFor="reg-password">Contraseña</label>
+        <input
+          id="reg-password"
+          type="password"
+          autoComplete="new-password"
+          placeholder="Mínimo 6 caracteres"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          minLength={6}
+        />
 
         {error && <div className="error">{error}</div>}
 
         <button type="submit" disabled={cargando}>
-          {cargando ? 'Creando...' : 'Crear cuenta'}
+          {cargando ? 'Creando…' : 'Crear cuenta'}
         </button>
 
         <p className="link">
-          Ya tienes cuenta? <Link to="/login">Inicia sesion</Link>
+          ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
         </p>
       </form>
-    </div>
+    </AuthLayout>
   );
 }
